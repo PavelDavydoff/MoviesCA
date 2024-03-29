@@ -1,18 +1,23 @@
 package com.example.moviesca.presentation.movies
 
-import android.content.Context
 import com.example.moviesca.domain.models.Movie
 
 interface MoviesView {
-    fun showPlaceholderMessage(isVisible: Boolean)
+    // Методы, меняющие внешний вид экрана
 
-    fun showMoviesList(isVisible: Boolean)
+    // Состояние «загрузки»
+    fun render(state: MoviesState)
 
-    fun showProgressBar(isVisible: Boolean)
+    fun showLoading()
 
-    fun changePlaceholderText(newPlaceholderText: String)
+    // Состояние «ошибки»
+    fun showError(errorMessage: String)
 
-    fun updateMoviesList(newMoviesList: List<Movie>)
+    // Состояние «пустого списка»
+    fun showEmpty(emptyMessage: String)
 
-    fun showToast(text: String)
+    // Состояние «контента»
+    fun showContent(movies: List<Movie>)
+
+    fun showToast(additionalMessage: String)
 }
