@@ -1,4 +1,4 @@
-package com.example.moviesca.ui.movies
+package com.example.moviesca.presentation.movies
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

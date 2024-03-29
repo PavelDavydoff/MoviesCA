@@ -7,9 +7,10 @@ import com.example.moviesca.data.network.RetrofitNetworkClient
 import com.example.moviesca.domain.api.MoviesInteractor
 import com.example.moviesca.domain.api.MoviesRepository
 import com.example.moviesca.domain.impl.MoviesInteractorImpl
-import com.example.moviesca.presentation.MoviesSearchController
-import com.example.moviesca.presentation.PosterController
-import com.example.moviesca.ui.movies.MoviesAdapter
+import com.example.moviesca.presentation.movies.MoviesSearchPresenter
+import com.example.moviesca.presentation.movies.PosterPresenter
+import com.example.moviesca.presentation.movies.MoviesView
+import com.example.moviesca.presentation.movies.PosterView
 
 object Creator {
     private fun getMoviesRepository(context: Context): MoviesRepository {
@@ -20,11 +21,17 @@ object Creator {
         return MoviesInteractorImpl(getMoviesRepository(context))
     }
 
-    fun provideMoviesSearchController(activity: Activity, adapter: MoviesAdapter): MoviesSearchController {
-        return MoviesSearchController(activity, adapter)
+    fun provideMoviesSearchPresenter(
+        moviesView: MoviesView,
+        context: Context
+    ): MoviesSearchPresenter {
+        return MoviesSearchPresenter(
+            view = moviesView,
+            context = context
+        )
     }
 
-    fun providePosterController(activity: Activity): PosterController {
-        return PosterController(activity)
+    fun providePosterPresenter(view: PosterView, url: String): PosterPresenter {
+        return PosterPresenter(view, url)
     }
 }
